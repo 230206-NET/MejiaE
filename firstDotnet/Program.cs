@@ -21,7 +21,7 @@ if (balance <= 0) { //comparing the variable to the zero integer.
 } else if (balance > 0) { // 'else if' ONLY runs if the conditional statement above it is not true.
     Console.WriteLine(balance); //prints the balance value
 } else { // if none of the previous conditions are true then 'else' will be the default code that runs.
-    Console.WriteLine("Your balance somehow is neither positive, negative, nor zero.") //This should never be printed by the console since the previous lines of code handle all the conditions. 
+    Console.WriteLine("Your balance somehow is neither positive, negative, nor zero."); //This should never be printed by the console since the previous lines of code handle all the conditions. 
 }
 
 Console.WriteLine("Ending Program.");
