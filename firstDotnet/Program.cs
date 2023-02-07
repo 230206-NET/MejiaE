@@ -19,7 +19,7 @@ int balance = 100; //hardcoded balance value for the purpose of giving an exampl
 if (balance <= 0) { //comparing the variable to the zero integer.
     Console.WriteLine("Account balance must not have a negative balance!");
 } else if (balance > 0) { // 'else if' ONLY runs if the conditional statement above it is not true.
-    Console.WriteLine(balance);
+    Console.WriteLine(balance); //prints the balance value
 }
 
 Console.WriteLine("Ending Program.");
