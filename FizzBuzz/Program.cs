@@ -43,7 +43,7 @@ for(int i = 1; i <= parsedInput; i++){ // this loop checks every number starting
     string result = ""; //init result as an empty string for each number
     foreach (int num in numbers) { //checks if the number is divisible by 3 or 5 (the numbers in our array)
         if (i % num == 0) {
-            result = string.Concat(result, num == 3 ? "Fizz" : "Buzz"); // concatinates the word 'Fizz' or 'Buzz' for our current number depending on what number we're using from our 'numbers' array
+            result = string.Concat(result, num == 3 ? "Fizz" : "Buzz"); // concatenates the word 'Fizz' or 'Buzz' for our current number depending on what number we're using from our 'numbers' array
         }
     }
     if (string.IsNullOrEmpty(result)) { //if the string value for 'result' is null/empty (meaning that nothing was concatenated to 'result' due to the number not being divisible by 3 or 5), then print the number
