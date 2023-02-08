@@ -46,7 +46,7 @@ for(int i = 1; i <= parsedInput; i++){ // this loop checks every number starting
             result = string.Concat(result, num == 3 ? "Fizz" : "Buzz"); // concatinates the word 'Fizz' or 'Buzz' for our current number depending on what number we're using from our 'numbers' array
         }
     }
-    if (string.IsNullOrEmpty(result)) { //if the string value for 'result' is null/empty (meaning that nothing was concatinated to 'result' due to the number not being divisible by 3 or 5), then print the number
+    if (string.IsNullOrEmpty(result)) { //if the string value for 'result' is null/empty (meaning that nothing was concatenated to 'result' due to the number not being divisible by 3 or 5), then print the number
         Console.WriteLine(i);
     } else { //if our string value for 'result' is not null/empty (meaning it is divisible by at least one of the numbers), then print the value of 'result'
         Console.WriteLine(result);
