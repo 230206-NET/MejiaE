@@ -12,23 +12,7 @@ namespace BudgetApp {
 
             Console.WriteLine("Welcome to the Budget App.");
             InitPrompt();
-            CalculateTotalExpense();
-            int remainingBudget = CalculateRemainingBudget();
-            Console.WriteLine("==========================");
-            Console.WriteLine("BUDGET STATS");
-            Console.WriteLine("==========================");
-            Console.WriteLine($"STARTING BUDGET: {startingBudget} | TOTAL EXPENSE: {totalExpense} | ENDING BUDGET: {remainingBudget}");
-            Console.WriteLine("===");
-            Console.WriteLine("EXPENSES:");
-            ShowExpenses();
-            Console.WriteLine("===");
-            if (remainingBudget > 0) {
-                Console.WriteLine("After taking all expenses into account, you still have some money left in your budget.");
-            } else if (remainingBudget < 0) {
-                Console.WriteLine("You've gone over your budget! Perhaps try better money management practices.");
-            } else {
-                Console.WriteLine("You've completely exhausted your budget. There is no money left to spend!");
-            }
+            ShowResults();
         }
 
         static void InitPrompt() {
@@ -113,6 +97,26 @@ namespace BudgetApp {
         static void ShowExpenses () {
             foreach (Expense expense in expenses) {
                 Console.WriteLine(expense.ToString());
+            }
+        }
+
+        static void ShowResults (){
+            CalculateTotalExpense();
+            int remainingBudget = CalculateRemainingBudget();
+            Console.WriteLine("==========================");
+            Console.WriteLine("BUDGET STATS");
+            Console.WriteLine("==========================");
+            Console.WriteLine($"STARTING BUDGET: {startingBudget} | TOTAL EXPENSE: {totalExpense} | ENDING BUDGET: {remainingBudget}");
+            Console.WriteLine("===");
+            Console.WriteLine("EXPENSES:");
+            ShowExpenses();
+            Console.WriteLine("===");
+            if (remainingBudget > 0) {
+                Console.WriteLine("After taking all expenses into account, you still have some money left in your budget.");
+            } else if (remainingBudget < 0) {
+                Console.WriteLine("You've gone over your budget! Perhaps try better money management practices.");
+            } else {
+                Console.WriteLine("You've completely exhausted your budget. There is no money left to spend!");
             }
         }
 
