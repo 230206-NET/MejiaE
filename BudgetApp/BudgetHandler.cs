@@ -2,7 +2,7 @@
 
 namespace BudgetApp {
     public class BudgetHandler {
-        static int startingBudget, totalExpense;
+        static double startingBudget, totalExpense;
 
         
         static List<Expense> expenses = new List<Expense>();
@@ -17,19 +17,19 @@ namespace BudgetApp {
 
         static void InitPrompt() {
             string tempDescription = "";
-            int tempCost = 0;
+            double tempCost = 0.0;
 
             while(true){
-                if (startingBudget <= 0) {
+                if (startingBudget <= 0.0) {
                     Console.WriteLine("Please enter your starting budget:");
                     try{
-                        startingBudget = int.Parse(Console.ReadLine());
+                        startingBudget = double.Parse(Console.ReadLine());
                     }catch (Exception) {
                         Console.WriteLine("An error occured while reading your starting budget, try again!");
                         continue;
                     }
 
-                    if (startingBudget <= 0) {
+                    if (startingBudget <= 0.0) {
                         Console.WriteLine("Your starting budget must be a number higher than zero, try again!");
                         continue;
                     }
@@ -48,16 +48,16 @@ namespace BudgetApp {
                     }
                 }
 
-                if (tempCost <= 0) {
+                if (tempCost <= 0.0) {
                     Console.WriteLine("Now, please enter the cost as a positive value:");
                     try{
-                        tempCost = int.Parse(Console.ReadLine());
+                        tempCost = double.Parse(Console.ReadLine());
                     }catch (Exception) {
                         Console.WriteLine("An error occured while reading the cost of the expense, try again!");
                         continue;
                     }
 
-                    if (tempCost <= 0) {
+                    if (tempCost <= 0.0) {
                         Console.WriteLine("The cost of the expense must be a number higher than zero, try again!");
                         continue;
                     }
@@ -73,7 +73,7 @@ namespace BudgetApp {
                     case "Y":
                     case "YES":
                         tempDescription = "";
-                        tempCost = 0;
+                        tempCost = 0.0;
                         continue;
                     case "N":
                     case "NO":
@@ -90,7 +90,7 @@ namespace BudgetApp {
             totalExpense = expenses.Sum(expense => expense.amount);
         }
         
-        static int CalculateRemainingBudget() {
+        static double CalculateRemainingBudget() {
             return startingBudget - totalExpense;
         }
 
@@ -102,18 +102,18 @@ namespace BudgetApp {
 
         static void ShowResults (){
             CalculateTotalExpense();
-            int remainingBudget = CalculateRemainingBudget();
+            double remainingBudget = CalculateRemainingBudget();
             Console.WriteLine("==========================");
             Console.WriteLine("BUDGET STATS");
             Console.WriteLine("==========================");
-            Console.WriteLine($"STARTING BUDGET: {startingBudget} | TOTAL EXPENSE: {totalExpense} | ENDING BUDGET: {remainingBudget}");
+            Console.WriteLine($"STARTING BUDGET: ${startingBudget} | TOTAL EXPENSE: ${totalExpense} | ENDING BUDGET: ${remainingBudget}");
             Console.WriteLine("===");
             Console.WriteLine("EXPENSES:");
             ShowExpenses();
             Console.WriteLine("===");
-            if (remainingBudget > 0) {
-                Console.WriteLine("After taking all expenses into account, you still have some money left in your budget.");
-            } else if (remainingBudget < 0) {
+            if (remainingBudget > 0.0) {
+                Console.WriteLine("After taking all expenses into account, you still have money left in your budget.");
+            } else if (remainingBudget < 0.0) {
                 Console.WriteLine("You've gone over your budget! Perhaps try better money management practices.");
             } else {
                 Console.WriteLine("You've completely exhausted your budget. There is no money left to spend!");
