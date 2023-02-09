@@ -1,7 +1,8 @@
 ﻿using System;
 
 namespace BudgetApp {
-    public class BudgetHandler {
+    public class BudgetHandler { 
+        //TO-DO: get rid of the static methods and variables and handle possible null references
         static double startingBudget, totalExpense;
 
         
@@ -18,7 +19,7 @@ namespace BudgetApp {
         static void InitPrompt() {
             string tempDescription = "";
             double tempCost = 0.0;
-
+            bool isProcessedExpense = false;
             while(true){
                 if (startingBudget <= 0.0) {
                     Console.WriteLine("Please enter your starting budget:");
@@ -63,9 +64,11 @@ namespace BudgetApp {
                     }
                 }
 
-                expenses.Add(new Expense() { description = tempDescription, amount = tempCost });
-
-                FinishPrompt:
+                if (!isProcessedExpense){
+                    expenses.Add(new Expense() { description = tempDescription, amount = tempCost });
+                    isProcessedExpense = true;
+                }
+                
                 Console.WriteLine("Your expense has been added successfully! Would you like to add another one? (Y = YES / N = NO)");
                 string response = Console.ReadLine();
 
@@ -74,13 +77,14 @@ namespace BudgetApp {
                     case "YES":
                         tempDescription = "";
                         tempCost = 0.0;
+                        isProcessedExpense = false;
                         continue;
                     case "N":
                     case "NO":
                         return;
                     default: 
                         Console.WriteLine("Invalid input! Please reply with either Y or N.");
-                        goto FinishPrompt;
+                        continue;
                 }
             }
 
