@@ -11,7 +11,7 @@ namespace BudgetApp {
         public static void Main(string[] args) {
             
 
-            Console.WriteLine("Welcome to the Budget App.");
+            Console.WriteLine("Welcome to the Budget App: Helping you track your expenses to survive in this economy!");
             InitPrompt();
             ShowResults();
         }
