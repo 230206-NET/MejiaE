@@ -3,7 +3,7 @@
 namespace BudgetApp {
     public class BudgetHandler { 
         //TO-DO: get rid of the static methods and variables and handle possible null references
-        static double startingBudget, totalExpense;
+        static decimal startingBudget, totalExpense;
 
         
         static List<Expense> expenses = new List<Expense>();
@@ -18,19 +18,19 @@ namespace BudgetApp {
 
         static void InitPrompt() {
             string tempDescription = "";
-            double tempCost = 0.0;
+            decimal tempCost = 0.0m;
             bool isProcessedExpense = false;
             while(true){
-                if (startingBudget <= 0.0) {
+                if (startingBudget <= 0.0m) {
                     Console.WriteLine("Please enter your starting budget:");
                     try{
-                        startingBudget = double.Parse(Console.ReadLine());
+                        startingBudget = decimal.Parse(Console.ReadLine());
                     }catch (Exception) {
                         Console.WriteLine("An error occured while reading your starting budget, try again!");
                         continue;
                     }
 
-                    if (startingBudget <= 0.0) {
+                    if (startingBudget <= 0.0m) {
                         Console.WriteLine("Your starting budget must be a number higher than zero, try again!");
                         continue;
                     }
@@ -49,16 +49,16 @@ namespace BudgetApp {
                     }
                 }
 
-                if (tempCost <= 0.0) {
+                if (tempCost <= 0.0m) {
                     Console.WriteLine("Now, please enter the cost as a positive value:");
                     try{
-                        tempCost = double.Parse(Console.ReadLine());
+                        tempCost = decimal.Parse(Console.ReadLine());
                     }catch (Exception) {
                         Console.WriteLine("An error occured while reading the cost of the expense, try again!");
                         continue;
                     }
 
-                    if (tempCost <= 0.0) {
+                    if (tempCost <= 0.0m) {
                         Console.WriteLine("The cost of the expense must be a number higher than zero, try again!");
                         continue;
                     }
@@ -76,7 +76,7 @@ namespace BudgetApp {
                     case "Y":
                     case "YES":
                         tempDescription = "";
-                        tempCost = 0.0;
+                        tempCost = 0.0m;
                         isProcessedExpense = false;
                         continue;
                     case "N":
@@ -94,7 +94,7 @@ namespace BudgetApp {
             totalExpense = expenses.Sum(expense => expense.amount);
         }
         
-        static double CalculateRemainingBudget() {
+        static decimal CalculateRemainingBudget() {
             return startingBudget - totalExpense;
         }
 
@@ -106,7 +106,7 @@ namespace BudgetApp {
 
         static void ShowResults (){
             CalculateTotalExpense();
-            double remainingBudget = CalculateRemainingBudget();
+            decimal remainingBudget = CalculateRemainingBudget();
             Console.WriteLine("==========================");
             Console.WriteLine("BUDGET STATS");
             Console.WriteLine("==========================");
@@ -115,9 +115,9 @@ namespace BudgetApp {
             Console.WriteLine("EXPENSES:");
             ShowExpenses();
             Console.WriteLine("===");
-            if (remainingBudget > 0.0) {
+            if (remainingBudget > 0.0m) {
                 Console.WriteLine("After taking all expenses into account, you still have money left in your budget.");
-            } else if (remainingBudget < 0.0) {
+            } else if (remainingBudget < 0.0m) {
                 Console.WriteLine("You've gone over your budget! Perhaps try better money management practices.");
             } else {
                 Console.WriteLine("You've completely exhausted your budget. There is no money left to spend!");
