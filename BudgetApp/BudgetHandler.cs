@@ -1,22 +1,21 @@
 ﻿using System;
 
 namespace BudgetApp {
-    public class BudgetHandler { 
-        static List<Expense> expenses = new List<Expense>();
-        
+    public class BudgetHandler {
         public static void Main(string[] args) {
             
 
             Console.WriteLine("Welcome to the Budget App: Helping you track your expenses to survive in this economy!");
-            decimal startingBudget = CollectBudgetInformation();
-            ShowResults(startingBudget);
+            (decimal, List<Expense>) budgetInfo = CollectBudgetInformation();
+            ShowResults(budgetInfo.Item1, budgetInfo.Item2);
         }
 
-        static decimal CollectBudgetInformation() {
+        static (decimal, List<Expense>) CollectBudgetInformation() {
             string tempDescription = "";
             decimal tempCost = 0.0m;
             bool isProcessedExpense = false;
             decimal startingBudget = 0.0m;
+            List<Expense> expenses = new List<Expense>();
             while(true){
                 if (startingBudget <= 0.0m) {
                     Console.WriteLine("Please enter your starting budget:");
@@ -66,7 +65,12 @@ namespace BudgetApp {
                     isProcessedExpense = true;
                 }
                 
-                Console.WriteLine("Your expense has been added successfully! Would you like to add another one? (Y = YES / N = NO)");
+                Console.WriteLine("Your expense has been added successfully!");
+
+                decimal totalExpense = expenses.Sum(expense => expense.amount);
+                decimal remainingBudget = startingBudget - totalExpense;
+
+                Console.WriteLine($"Your remaining budget is ${remainingBudget}. Would you like to add another one? (Y = YES / N = NO)");
                 string response = Console.ReadLine();
 
                 switch (response.ToUpper()) {
@@ -78,7 +82,7 @@ namespace BudgetApp {
                         continue;
                     case "N":
                     case "NO":
-                        return startingBudget;
+                        return (startingBudget, expenses);
                     default: 
                         Console.WriteLine("Invalid input! Please reply with either Y or N.");
                         continue;
@@ -87,7 +91,7 @@ namespace BudgetApp {
 
         }
 
-        static void ShowResults (decimal startingBudget){
+        static void ShowResults (decimal startingBudget, List<Expense> expenses){
             decimal totalExpense = expenses.Sum(expense => expense.amount);
             decimal remainingBudget = startingBudget - totalExpense;
             Console.WriteLine("==========================");
