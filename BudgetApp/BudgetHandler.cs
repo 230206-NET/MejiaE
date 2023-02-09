@@ -2,24 +2,21 @@
 
 namespace BudgetApp {
     public class BudgetHandler { 
-        //TO-DO: get rid of the static methods and variables and handle possible null references
-        static decimal startingBudget, totalExpense;
-
-        
         static List<Expense> expenses = new List<Expense>();
         
         public static void Main(string[] args) {
             
 
             Console.WriteLine("Welcome to the Budget App: Helping you track your expenses to survive in this economy!");
-            InitPrompt();
-            ShowResults();
+            decimal startingBudget = CollectBudgetInformation();
+            ShowResults(startingBudget);
         }
 
-        static void InitPrompt() {
+        static decimal CollectBudgetInformation() {
             string tempDescription = "";
             decimal tempCost = 0.0m;
             bool isProcessedExpense = false;
+            decimal startingBudget = 0.0m;
             while(true){
                 if (startingBudget <= 0.0m) {
                     Console.WriteLine("Please enter your starting budget:");
@@ -81,7 +78,7 @@ namespace BudgetApp {
                         continue;
                     case "N":
                     case "NO":
-                        return;
+                        return startingBudget;
                     default: 
                         Console.WriteLine("Invalid input! Please reply with either Y or N.");
                         continue;
@@ -90,30 +87,16 @@ namespace BudgetApp {
 
         }
 
-        static void CalculateTotalExpense () {
-            totalExpense = expenses.Sum(expense => expense.amount);
-        }
-        
-        static decimal CalculateRemainingBudget() {
-            return startingBudget - totalExpense;
-        }
-
-        static void ShowExpenses () {
-            foreach (Expense expense in expenses) {
-                Console.WriteLine(expense.ToString());
-            }
-        }
-
-        static void ShowResults (){
-            CalculateTotalExpense();
-            decimal remainingBudget = CalculateRemainingBudget();
+        static void ShowResults (decimal startingBudget){
+            decimal totalExpense = expenses.Sum(expense => expense.amount);
+            decimal remainingBudget = startingBudget - totalExpense;
             Console.WriteLine("==========================");
             Console.WriteLine("BUDGET STATS");
             Console.WriteLine("==========================");
             Console.WriteLine($"STARTING BUDGET: ${startingBudget} | TOTAL EXPENSE: ${totalExpense} | ENDING BUDGET: ${remainingBudget}");
             Console.WriteLine("===");
             Console.WriteLine("EXPENSES:");
-            ShowExpenses();
+            expenses.ForEach(expense => Console.WriteLine(expense));
             Console.WriteLine("===");
             if (remainingBudget > 0.0m) {
                 Console.WriteLine("After taking all expenses into account, you still have money left in your budget.");

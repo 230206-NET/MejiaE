@@ -1,7 +1,7 @@
 using System;
 
 namespace BudgetApp {
-    public class Expense {
+    class Expense {
         public string description { get; set; }
         public decimal amount { get; set; }
 
