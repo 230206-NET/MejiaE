@@ -4,7 +4,6 @@ namespace BudgetApp {
     public class BudgetHandler {
         public static void Main(string[] args) {
             
-
             Console.WriteLine("Welcome to the Budget App: Helping you track your expenses to survive in this economy!");
             (decimal, List<Expense>) budgetInfo = CollectBudgetInformation();
             ShowResults(budgetInfo.Item1, budgetInfo.Item2);
