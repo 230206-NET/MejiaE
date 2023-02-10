@@ -11,7 +11,7 @@ namespace Hangman {
             int tries = 0;
             FrameHolder frameHolder = new FrameHolder();
             string[] frames = frameHolder.hangFrames;
-            string wordToGuess = "Halloween";
+            string wordToGuess = "thumbscrew";
             string wrongGuesses = "";
             string rightguesses = "";
             
