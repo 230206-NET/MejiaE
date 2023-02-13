@@ -6,7 +6,7 @@ namespace Hangman {
         /*TO-DO:
         - Allow the user to input a hidden word through terminal using ReadKey or to use a random word from a preset.    
         - 'User proof' the input because right now it'll just take whatever they throw at it, NOT only letters and NOT only single characters...
-        - BUG WITH UPPERCASE CHARACTERS WHEN CHECKING IF YOU GUESSED ALL THE LETTERS!!! FIX!
+        - 
         */ 
         public static void Main(string[] args){
             int tries = 0;
@@ -56,7 +56,7 @@ namespace Hangman {
                     continue;
                 }
 
-                if (rightguesses.Length.Equals(wordToGuess.Distinct().Count())) {
+                if (rightguesses.Length.Equals(wordToGuess.ToUpper().Distinct().Count())) {
                     break;
                 }
             }
