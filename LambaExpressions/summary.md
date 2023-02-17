@@ -2,7 +2,7 @@
 
 ### Shorter code, faster results! - A 'sales pitch' on why you should use them
 
-# ```> Expression Body```
+# ```> ~/Presentation/Expression_Body```
 
 Tired of curly braces and returns?
 Ever find yourself spending too much time writing out code that should just be shorter?
@@ -21,7 +21,7 @@ member => expression;
 
 Now, let's see some examples on how this could improve your code...
 
-### Methods
+### > ~/Presentation/Expression_Body/Methods
 
 Here's an example of a regular method:
 
@@ -55,7 +55,7 @@ Here it is using expression-bodied syntax:
 void PrintMessage(string message) => Console.WriteLine(message);
 ```
 
-### Properties
+### > ~/Presentation/Expression_Body/Properties
 
 You're able to use expression-bodied members for your properties as well. Starting with ```C# 6.0```, it was made possible to have expression-bodied accessors on _Read-only_ properties (_get_). As of ```C# 7.0``` however, non-read-only properties can also have expression-bodied accessors (_get_ & _set_).
 > Note: As of November 2022, the most recent stable version of the language is ```C# 11.0```, which was released in 2022 in ```.NET 7.0```
@@ -96,9 +96,9 @@ public class MyFile
 }
 ```
 
-### Constructors/Finalizers (Destructors)
+### > ~/Presentation/Expression_Body/Constructors_And_Finalizers
 
-You can also use expression-bodied members for constructors and destructors as long as they only contain a single statement:
+You can also use expression-bodied members for constructors and finalizers (destructors) as long as they only contain a single statement:
 
 ```csharp
 public class Location
@@ -122,7 +122,7 @@ public class Location
 }
 ```
 
-### Indexers
+### > ~/Presentation/Expression_Body/Indexers
 
 Indexers can also use the expression-bodied syntax for the _get_ & _set_ accessors just like properties if they consist of a single expression:
 
@@ -144,7 +144,7 @@ public class Sports
 }
 ```
 
-# ```> Lambda Expressions```
+# ```> ~/Presentation/Lambda_Expressions```
 
 Lambda expressions allow you to create anonymous functions with the ```=>``` operator. Although it uses the same operator as expression-bodied members, it should be noted that they're **not** the same. Lambda expressions are blocks of codes that are treated as objects. They can be passed as arguments into methods, as well as returned by method calls. If this is something that interests you, then you should also check out LINQ as you can use the queries together with lambda.
 
@@ -162,7 +162,7 @@ The general usage of the syntax is as follows:
 
 To create a lambda expression, you specify input parameters (if any) on the left side of the lambda operator and an expression or a statement block on the other side.
 
-### Expression Lambdas
+### > ~/Presentation/Lambda_Expressions/Expression_Lambdas
 
 Here's example code which using lambda expressions:
 
@@ -226,7 +226,7 @@ class GFG {
 */
 ```
 
-## Statement Lambas
+### > ~/Presentation/Lambda_Expressions/Statement_Lambas
 
 A statement lambda is similar to an expression lambda except that its statements are enclosed in braces. The body of a statement lambda can consist of any number of statements. However, in practice, there are typically no more than two or three.  
 
@@ -245,11 +245,11 @@ greet("World"); //passing "World" as an argument
 */
 ```
 
-# ```> Closing Remarks```
+# ```> ~/Presentation/Closing_Remarks```
 
 After all this, hopefully the benefits and use cases of expression-bodied syntax and lambda expressions persuade you to try them. With both Lambda expressions and expression body you're able to shrink code and improve readability. However when using lambdas, make sure you're careful about **overusing** them; This could actually have a negative effect by making your code harder to read.
 
-# ```> Relevant Links & References```
+# ```> ~/Presentation/Relevant_Links_And_References```
 
 - [Language Integrated Query (LINQ) (C#) - Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/)
 - [System.Linq Namespace - Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/api/system.linq?view=net-7.0)
