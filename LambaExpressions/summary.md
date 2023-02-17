@@ -148,7 +148,7 @@ public class Sports
 
 Lambda expressions allow you to create anonymous functions with the ```=>``` operator. As you can see, it uses the same operator as expression-bodied members. This is because, in reality, lambda expressions are ```expression-bodied lambdas```. Lambda expressions are blocks of codes that are treated as objects. They can be passed as arguments into methods, as well as returned by method calls. If this is something that interests you, then you should also check out LINQ as you can use the queries together with lambda. A lambda expression can be converted to a delegate type; If it doesn't return a value it can be converted to one of the Action delegate types, otherwise it can be converted to one of the func delegate types.
 
-> Note: This can actually **impact** readability in cases where you use multiple lambda expressions to achieve what you're looking for. In that case, you might just be better off writing out the code and/or creating a method for it.
+> Note: Using lambdas can actually **impact** readability in cases where you use multiple lambda expressions to achieve what you're looking for. In that case, you might just be better off writing out the code and/or creating a method for it.
 
 The general usage of the syntax is as follows:
 
@@ -164,7 +164,7 @@ To create a lambda expression, you specify input parameters (if any) on the left
 
 ### Expression Lambdas (Expression-bodied Lambdas)
 
-Here's example code which using lambda expressions:
+Here's example code which uses lambda expressions:
 
 ```csharp
 
