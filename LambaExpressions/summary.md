@@ -226,7 +226,7 @@ class GFG {
 */
 ```
 
-### > Statement Lambas
+### Statement Lambas
 
 A statement lambda is similar to an expression lambda except that its statements are enclosed in braces. The body of a statement lambda can consist of any number of statements. However, in practice, there are typically no more than two or three.  
 
