@@ -146,7 +146,7 @@ public class Sports
 
 # ```> ~/Presentation/Lambda_Expressions```
 
-Lambda expressions allow you to create anonymous functions with the ```=>``` operator. Although it uses the same operator as expression-bodied members, it should be noted that they're **not** the same. Lambda expressions are blocks of codes that are treated as objects. They can be passed as arguments into methods, as well as returned by method calls. If this is something that interests you, then you should also check out LINQ as you can use the queries together with lambda.
+Lambda expressions allow you to create anonymous functions with the ```=>``` operator. As you can see, it uses the same operator as expression-bodied members. This is because, in reality, lambda expressions are ```expression-bodied lambdas``. Lambda expressions are blocks of codes that are treated as objects. They can be passed as arguments into methods, as well as returned by method calls. If this is something that interests you, then you should also check out LINQ as you can use the queries together with lambda. A lambda expression can be converted to a delegate type; If it doesn't return a value it can be converted to one of the Action delegate types, otherwise it can be converted to one of the func delegate types.
 
 > Note: This can actually **impact** readability in cases where you use multiple lambda expressions to achieve what you're looking for. In that case, you might just be better off writing out the code and/or creating a method for it.
 
@@ -162,7 +162,7 @@ The general usage of the syntax is as follows:
 
 To create a lambda expression, you specify input parameters (if any) on the left side of the lambda operator and an expression or a statement block on the other side.
 
-### Expression Lambdas
+### Expression Lambdas (Expression-bodied Lambdas)
 
 Here's example code which using lambda expressions:
 
@@ -217,7 +217,7 @@ class GFG {
         newDetails.ForEach(student => Console.WriteLine(student.rollNo + " " + student.name));
     }
 }
-/* Output - remember we're using the NAMES to order them, not the numbers.
+/* Output - remember we're using the NAMES to order them, not the numbers
  * 1 Liza
  * 4 Stefani
  * 2 Stewart
@@ -226,15 +226,25 @@ class GFG {
 */
 ```
 
-### Statement Lambas
+Example converting to a delegate:
 
-A statement lambda is similar to an expression lambda except that its statements are enclosed in braces. The body of a statement lambda can consist of any number of statements. However, in practice, there are typically no more than two or three.  
+```csharp
+Func<int, int> square = x => x * x; //example converting to Func delegate type since it returns a value
+Console.WriteLine(square(5));
+/* Output:
+ * 25
+ */
+```
+
+### Statement Lambas (Using Block Body Instead Of Expression Body)
+
+A statement lambda is similar to an expression lambda except that its statements are enclosed in braces. The body of a statement lambda can consist of any number of statements. However, in practice, there are typically no more than two or three.
 
 ```csharp
 /* For the argument 'name', we'd like to insert the argument into
  * the 'greeting' string. Then, we'll print 'greeting' on the console. 
 */
-Action<string> greet = name =>
+Action<string> greet = name => //example converting to Action delegate type since it doesn't return a value
 {
     string greeting = $"Hello {name}!";
     Console.WriteLine(greeting);
@@ -251,6 +261,7 @@ After all this, hopefully the benefits and use cases of expression-bodied syntax
 
 # ```> ~/Presentation/Relevant_Links_And_References```
 
+- [Use expression body for lambdas (IDE0053)](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0053)
 - [Language Integrated Query (LINQ) (C#) - Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/)
 - [System.Linq Namespace - Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/api/system.linq?view=net-7.0)
 - [Lambda expressions and anonymous functions - Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions#statement-lambdas)
