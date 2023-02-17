@@ -257,11 +257,11 @@ greet("World"); //passing "World" as an argument
 
 # ```> ~/Presentation/Closing_Remarks```
 
-After all this, hopefully the benefits and use cases of expression-bodied syntax and lambda expressions persuade you to try them. With both Lambda expressions and expression body you're able to shrink code and improve readability. However when using lambdas, make sure you're careful about **overusing** them; This could actually have a negative effect by making your code harder to read.
+After all this, hopefully the benefits and use cases of expression-bodied syntax and lambda expressions persuade you to try them. With both Lambda expressions and expression body you're able to shrink code and improve readability. However, when using lambdas make sure you're careful about **overusing** them; This could actually have a negative effect by making your code harder to read.
 
 # ```> ~/Presentation/Relevant_Links_And_References```
 
-- [Use expression body for lambdas (IDE0053)](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0053)
+- [Use expression body for lambdas (IDE0053) - Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0053)
 - [Language Integrated Query (LINQ) (C#) - Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/)
 - [System.Linq Namespace - Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/api/system.linq?view=net-7.0)
 - [Lambda expressions and anonymous functions - Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions#statement-lambdas)
