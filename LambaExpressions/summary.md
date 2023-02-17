@@ -21,7 +21,7 @@ member => expression;
 
 Now, let's see some examples on how this could improve your code...
 
-### > ~/Presentation/Expression_Body/Methods
+### Methods
 
 Here's an example of a regular method:
 
@@ -55,7 +55,7 @@ Here it is using expression-bodied syntax:
 void PrintMessage(string message) => Console.WriteLine(message);
 ```
 
-### > ~/Presentation/Expression_Body/Properties
+### Properties
 
 You're able to use expression-bodied members for your properties as well. Starting with ```C# 6.0```, it was made possible to have expression-bodied accessors on _Read-only_ properties (_get_). As of ```C# 7.0``` however, non-read-only properties can also have expression-bodied accessors (_get_ & _set_).
 > Note: As of November 2022, the most recent stable version of the language is ```C# 11.0```, which was released in 2022 in ```.NET 7.0```
@@ -96,7 +96,7 @@ public class MyFile
 }
 ```
 
-### > ~/Presentation/Expression_Body/Constructors_And_Finalizers
+### Constructors & Finalizers
 
 You can also use expression-bodied members for constructors and finalizers (destructors) as long as they only contain a single statement:
 
@@ -122,7 +122,7 @@ public class Location
 }
 ```
 
-### > ~/Presentation/Expression_Body/Indexers
+### Indexers
 
 Indexers can also use the expression-bodied syntax for the _get_ & _set_ accessors just like properties if they consist of a single expression:
 
@@ -162,7 +162,7 @@ The general usage of the syntax is as follows:
 
 To create a lambda expression, you specify input parameters (if any) on the left side of the lambda operator and an expression or a statement block on the other side.
 
-### > ~/Presentation/Lambda_Expressions/Expression_Lambdas
+### Expression Lambdas
 
 Here's example code which using lambda expressions:
 
@@ -226,7 +226,7 @@ class GFG {
 */
 ```
 
-### > ~/Presentation/Lambda_Expressions/Statement_Lambas
+### > Statement Lambas
 
 A statement lambda is similar to an expression lambda except that its statements are enclosed in braces. The body of a statement lambda can consist of any number of statements. However, in practice, there are typically no more than two or three.  
 
