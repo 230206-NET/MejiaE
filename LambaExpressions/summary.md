@@ -247,7 +247,7 @@ greet("World"); //passing "World" as an argument
 
 # ```> Closing Remarks```
 
-After all this, hopefully the benefits and use cases of expression-bodied syntax and lambda expressions persuade you to try them. With both Lambda expressions and expression body you're able to shrink code and improve readability. However when using lambdas, make sure you're careful about **overusing** them; This could actually have a negative effect in your code and make it hard to read.
+After all this, hopefully the benefits and use cases of expression-bodied syntax and lambda expressions persuade you to try them. With both Lambda expressions and expression body you're able to shrink code and improve readability. However when using lambdas, make sure you're careful about **overusing** them; This could actually have a negative effect by making your code harder to read.
 
 # ```> Relevant Links & References```
 
