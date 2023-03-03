@@ -10,32 +10,13 @@ public class Ticket
     public string Description
     {
         get => _description;
-        set
-        {
-            if (value.Length > 100 || value.Length < 3 || string.IsNullOrWhiteSpace(value))
-            {
-                throw new ArgumentLengthException("description must be 3 to 20 characters long");
-            }
-            else
-            {
-                _description = value;
-            }
-        }
+        set => _description = value;
     }
     public decimal Amount
     {
         get => _amount;
-        set
-        {
-            if (value > 0.0m)
-            {
-                _amount = value;
-            }
-            else
-            {
-                throw new FormatException("Amount must be a valid number higher than 0.");
-            }
-        }
+        set => _amount = value;
+
     }
     public DateTime SubmissionDate { get; set; } = DateTime.Now;
     public int UserID { get; set; }

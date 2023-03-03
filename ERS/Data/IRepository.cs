@@ -1,6 +1,6 @@
 using Models;
 using System.Collections.Generic;
-
+namespace Data;
 public interface IRepository
 {
     /// <summary>

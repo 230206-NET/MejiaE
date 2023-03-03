@@ -99,7 +99,7 @@ public class AccountPanel
             }
             else
             {
-                Console.WriteLine("Invalid input for amoount... Please try again!");
+                Console.WriteLine("Invalid input for amount... Please try again!");
             }
         }
     }

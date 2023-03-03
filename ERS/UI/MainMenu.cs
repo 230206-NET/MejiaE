@@ -1,4 +1,5 @@
 using Data;
+
 using Services;
 
 namespace UI;
@@ -61,7 +62,7 @@ public class MainMenu
                         passwordsToCompare[i] = getPasswordInput();
                     }
 
-                    string fName, lName;
+                    string? fName, lName;
 
                     Console.WriteLine("First name:");
                     fName = Console.ReadLine();

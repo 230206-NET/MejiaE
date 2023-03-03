@@ -1,4 +1,5 @@
 using Models;
+using Models.CustomException;
 using Data;
 
 namespace Services;
@@ -47,12 +48,38 @@ public class AccountService
         }
         return filteredTickets;
     }
+    public List<Ticket>? GetPendingTicketsForUser(int UserID)
+    {
+        List<Ticket> allTickets = GetAllTickets();
+        List<Ticket>? filteredTickets;
+        try
+        {
+            filteredTickets = allTickets.Where(Ticket => Ticket.UserID.Equals(UserID) && Ticket.Status.Equals(0)).ToList();
+        }
+        catch (InvalidOperationException)
+        {
+            filteredTickets = null;
+        }
+        return filteredTickets;
+    }
 
-    public void CreateNewTicket(Ticket newTicket)
+    public Ticket CreateNewTicket(Ticket newTicket)
     {
         // try
         //{
-        _repo.CreateNewTicket(newTicket);
+        if (newTicket.Description.Length > 100 || newTicket.Description.Length < 3 || string.IsNullOrWhiteSpace(newTicket.Description))
+        {
+            throw new ArgumentLengthException("Description must be 3 to 20 characters long.");
+        }
+        else if (newTicket.Amount <= 0.0m)
+        {
+            throw new FormatException("Amount must be a valid number higher than 0.");
+        }
+        else
+        {
+            _repo.CreateNewTicket(newTicket);
+            return newTicket;
+        }
         //}
         // catch (SqlException)
         //{
@@ -63,6 +90,43 @@ public class AccountService
     public void UpdateTicketStatus(int TicketID, int Status)
     {
         _repo.UpdateTicketStatus(TicketID, Status);
+    }
+
+    public Ticket UpdateTicketStatusWithAuthorId(int editorId, int TicketId, int TicketStatus)
+    {
+        User editor = GetUserById(editorId);
+
+        if (editor == null || editor.Rank != 1)
+        {
+            return null;
+        }
+
+        Ticket ticketToEdit = GetTicketById(TicketId);
+
+        if (ticketToEdit != null && ticketToEdit.Status == 0)
+        {
+            UpdateTicketStatus(ticketToEdit.ID, TicketStatus);
+            return GetTicketById(ticketToEdit.ID);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public Ticket GetTicketById(int Id)
+    {
+        List<Ticket> allTickets = _repo.GetAllTickets();
+        Ticket? filteredTicket;
+        try
+        {
+            filteredTicket = allTickets.First(ticket => ticket.ID.Equals(Id));
+        }
+        catch (InvalidOperationException)
+        {
+            filteredTicket = null;
+        }
+        return filteredTicket;
     }
 
     public List<User> GetAllUsers()
@@ -76,6 +140,23 @@ public class AccountService
         {
             return true;
         }
+        return false;
+    }
+
+    public Boolean AttemptLogin(string username, string password)
+    {
+
+        User user = GetUserByUsername(username);
+
+        if (user == null)
+        {
+            return false;
+        }
+        else if (user.Password.Equals(password))
+        {
+            return true;
+        }
+
         return false;
     }
 
@@ -101,11 +182,43 @@ public class AccountService
         return filteredUser;
     }
 
-    public void CreateNewUser(User newUser)
+    public User? GetUserById(int id)
+    {
+        List<User> allUsers = _repo.GetAllUsers();
+        User? filteredUser;
+        try
+        {
+            filteredUser = allUsers.First(user => user.ID.Equals(id));
+        }
+        catch (InvalidOperationException)
+        {
+            filteredUser = null;
+        }
+        return filteredUser;
+    }
+
+    public User CreateNewUser(User newUser)
     {
         // try
         // {
-        _repo.CreateNewUser(newUser);
+        if (newUser.Username.Length > 20 || newUser.Username.Length < 3 || string.IsNullOrWhiteSpace(newUser.Username))
+        {
+            throw new ArgumentLengthException("Username must be 3 to 20 characters long.");
+        }
+        else if (newUser.Password.Length > 100 || newUser.Password.Length < 8 || string.IsNullOrWhiteSpace(newUser.Password))
+        {
+            throw new ArgumentLengthException("Passwords must be between 8 and 100 characters long.");
+        }
+        else if (UsernameExists(newUser.Username))
+        {
+            throw new UserAlreadyExistsException("That username is already taken.");
+        }
+        else
+        {
+            _repo.CreateNewUser(newUser);
+            return newUser;
+        }
+
         // }
         //catch (SqlException)
         //{
