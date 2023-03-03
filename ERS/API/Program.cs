@@ -25,15 +25,30 @@ app.UseSwaggerUI();
 
 app.MapGet("/tickets", ([FromQuery] bool? pending, [FromQuery] int? UserId, AccountService service) =>
 {
-    if (pending ?? false)
+    if (pending.HasValue)
     {
         if (UserId.HasValue)
         {
-            return service.GetPendingTicketsForUser(UserId.Value);
+            if (pending ?? false)
+            {
+                return service.GetPendingTicketsForUser(UserId.Value);
+            }
+            else
+            {
+                return service.GetNonPendingTicketsForUser(UserId.Value);
+            }
+
         }
         else
         {
-            return service.GetPendingTickets();
+            if (pending ?? false)
+            {
+                return service.GetPendingTickets();
+            }
+            else
+            {
+                return service.GetNonPendingTickets();
+            }
         }
 
     }

@@ -34,6 +34,21 @@ public class AccountService
         return pendingTickets;
     }
 
+    public List<Ticket>? GetNonPendingTickets()
+    {
+        List<Ticket> allTickets = GetAllTickets();
+        List<Ticket>? pendingTickets;
+        try
+        {
+            pendingTickets = allTickets.Where(Ticket => !Ticket.Status.Equals(0)).ToList();
+        }
+        catch (InvalidOperationException)
+        {
+            pendingTickets = null;
+        }
+        return pendingTickets;
+    }
+
     public List<Ticket>? GetTicketsForUser(int UserID)
     {
         List<Ticket> allTickets = GetAllTickets();
@@ -55,6 +70,21 @@ public class AccountService
         try
         {
             filteredTickets = allTickets.Where(Ticket => Ticket.UserID.Equals(UserID) && Ticket.Status.Equals(0)).ToList();
+        }
+        catch (InvalidOperationException)
+        {
+            filteredTickets = null;
+        }
+        return filteredTickets;
+    }
+
+    public List<Ticket>? GetNonPendingTicketsForUser(int UserID)
+    {
+        List<Ticket> allTickets = GetAllTickets();
+        List<Ticket>? filteredTickets;
+        try
+        {
+            filteredTickets = allTickets.Where(Ticket => Ticket.UserID.Equals(UserID) && !Ticket.Status.Equals(0)).ToList();
         }
         catch (InvalidOperationException)
         {
