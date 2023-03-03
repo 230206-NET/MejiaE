@@ -75,6 +75,10 @@ app.MapPost("/tickets", ([FromBody] Ticket ticket, AccountService service) =>
 
 app.MapPut("/tickets", ([FromBody] TicketEditorParams parameters, AccountService service) =>
 {
+    if (parameters.TicketStatus <= 0 || parameters.TicketStatus > 2)
+    {
+        return Results.BadRequest("For ticketstatus you must provide 1 to accept tickets or 2 to decline tickets.");
+    }
     Ticket? ticket = service.UpdateTicketStatusWithAuthorId(parameters.editorId, parameters.TicketId, parameters.TicketStatus);
     if (ticket != null)
     {
