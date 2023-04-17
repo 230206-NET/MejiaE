@@ -12,7 +12,7 @@ namespace StringManipulationChallenge
             string fName;           //this will hold the users first name
             string lName;           //this will hold the users last name
             string userFullName;    //this will hold the users full name;
-            
+
             //
             //
             //implement the required code here and within the methods below.
@@ -49,7 +49,8 @@ namespace StringManipulationChallenge
         // 1) change the string to all upper case, 
         // 2) print the result to the console and 
         // 3) return the new string.
-        public static string StringToUpper(string x) {
+        public static string StringToUpper(string x)
+        {
             string tempString = x.ToUpper();
             Console.WriteLine(tempString);
             return tempString;
@@ -60,30 +61,33 @@ namespace StringManipulationChallenge
         // 1) change the string to all lower case, 
         // 2) print the result to the console and 
         // 3) return the new string.        
-        public static string StringToLower(string x){
+        public static string StringToLower(string x)
+        {
             string tempString = x.ToLower();
             Console.WriteLine(tempString);
             return tempString;
         }
-        
+
         // This method has one string parameter. 
         // It will:
         // 1) trim the whitespace from before and after the string, 
         // 2) print the result to the console and 
         // 3) return the new string.
-        public static string StringTrim(string x){
+        public static string StringTrim(string x)
+        {
             string tempString = x.Trim();
             Console.WriteLine(tempString);
             return tempString;
         }
-        
+
         // This method has two parameters, one string and one integer. 
         // It will:
         // 1) get the substring based on the integer received, 
         // 2) print the result to the console and 
         // 3) return the new string.
-        public static string StringSubstring(string x, int elementNum){
-            string tempString = x.Substring(elementNum);
+        public static string StringSubstring(string x, int elementNum)
+        {
+            string tempString = x[elementNum..];
             Console.WriteLine(tempString);
             return tempString;
         }
@@ -92,7 +96,8 @@ namespace StringManipulationChallenge
         // It will:
         // 1) search the string parameter for the char parameter
         // 2) return the index of the char.
-        public static int SearchChar(string userInputString, char x){
+        public static int SearchChar(string userInputString, char x)
+        {
             return userInputString.IndexOf(x);
         }
 
@@ -100,7 +105,8 @@ namespace StringManipulationChallenge
         // It will:
         // 1) concatenate the two strings with a space between them.
         // 2) return the new string.
-        public static string ConcatNames(string fName, string lName){
+        public static string ConcatNames(string fName, string lName)
+        {
             string newString = $"{fName} {lName}";
             return newString;
         }
