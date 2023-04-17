@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Text;
 
-namespace Hangman {
-    public class HangmanGame {
+namespace Hangman
+{
+    public class HangmanGame
+    {
         /*TO-DO:
         - Allow the user to input a hidden word through terminal using ReadKey or to use a random word from a preset.    
         - 'User proof' the input because right now it'll just take whatever they throw at it, NOT only letters and NOT only single characters...
         - 
-        */ 
-        public static void Main(string[] args){
+        */
+        public static void Main(string[] args)
+        {
             int tries = 0;
             FrameHolder frameHolder = new FrameHolder();
             string[] frames = frameHolder.hangFrames;
             string wordToGuess = "Paraphernalia";
             string wrongGuesses = "";
             string rightguesses = "";
-            
-            while(tries < frames.Length) {
+
+            while (tries < frames.Length)
+            {
                 Console.ForegroundColor = ConsoleColor.Yellow;
 
                 Console.WriteLine("H A N G M A N");
@@ -28,16 +32,21 @@ namespace Hangman {
 
                 Console.Write("WORD: ");
 
-                foreach(char letter in wordToGuess) {
+                foreach (char letter in wordToGuess)
+                {
                     string tempLetter = letter.ToString();
-                    if (rightguesses.ToUpper().Contains(tempLetter.ToUpper())) {
+                    if (rightguesses.ToUpper().Contains(tempLetter.ToUpper()))
+                    {
                         Console.Write(letter);
-                    }else {
+                    }
+                    else
+                    {
                         Console.Write("_");
                     }
                 }
 
-                if (tries != 0) {
+                if (tries != 0)
+                {
                     Console.WriteLine("\nWrong guesses: {0}", string.Join(", ", wrongGuesses.Where(c => !string.IsNullOrEmpty(c.ToString()))));
                 }
 
@@ -45,18 +54,24 @@ namespace Hangman {
                 Console.WriteLine("\nEnter your guess:");
                 string currentGuess = Console.ReadLine().ToUpper();
 
-                if (rightguesses.ToUpper().Contains(currentGuess) || wrongGuesses.ToUpper().Contains(currentGuess)) {
+                if (rightguesses.ToUpper().Contains(currentGuess) || wrongGuesses.ToUpper().Contains(currentGuess))
+                {
                     Console.WriteLine("You've already guessed that letter! Try a different one.");
                     continue;
-                }else if(wordToGuess.ToUpper().Contains(currentGuess.ToUpper())) {
+                }
+                else if (wordToGuess.ToUpper().Contains(currentGuess.ToUpper()))
+                {
                     rightguesses += currentGuess;
-                } else {
+                }
+                else
+                {
                     wrongGuesses += currentGuess;
                     tries++;
                     continue;
                 }
 
-                if (rightguesses.Length.Equals(wordToGuess.ToUpper().Distinct().Count())) {
+                if (rightguesses.Length.Equals(wordToGuess.ToUpper().Distinct().Count()))
+                {
                     break;
                 }
             }
@@ -66,10 +81,13 @@ namespace Hangman {
             Console.WriteLine("H A N G M A N");
             Console.WriteLine("=X=X=X=X=X=X=");
 
-            if (tries >= frames.Length) {
+            if (tries >= frames.Length)
+            {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(frameHolder.loseFrame);
-            } else {
+            }
+            else
+            {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(frameHolder.winFrame);
             }
