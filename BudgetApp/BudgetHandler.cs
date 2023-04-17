@@ -1,69 +1,88 @@
 ﻿using System;
 
-namespace BudgetApp {
-    public class BudgetHandler {
-        public static void Main(string[] args) {
-            
+namespace BudgetApp
+{
+    public class BudgetHandler
+    {
+        public static void Main(string[] args)
+        {
+
             Console.WriteLine("Welcome to the Budget App: Helping you track your expenses to survive in this economy!");
             (decimal, List<Expense>) budgetInfo = CollectBudgetInformation();
             ShowResults(budgetInfo.Item1, budgetInfo.Item2);
         }
 
-        static (decimal, List<Expense>) CollectBudgetInformation() {
+        static (decimal, List<Expense>) CollectBudgetInformation()
+        {
             string tempDescription = "";
             decimal tempCost = 0.0m;
             bool isProcessedExpense = false;
             decimal startingBudget = 0.0m;
             List<Expense> expenses = new List<Expense>();
-            while(true){
-                if (startingBudget <= 0.0m) {
+            while (true)
+            {
+                if (startingBudget <= 0.0m)
+                {
                     Console.WriteLine("Please enter your starting budget:");
-                    try{
+                    try
+                    {
                         startingBudget = decimal.Parse(Console.ReadLine());
-                    }catch (Exception) {
+                    }
+                    catch (Exception)
+                    {
                         Console.WriteLine("An error occured while reading your starting budget, try again!");
                         continue;
                     }
 
-                    if (startingBudget <= 0.0m) {
+                    if (startingBudget <= 0.0m)
+                    {
                         Console.WriteLine("Your starting budget must be a number higher than zero, try again!");
                         continue;
                     }
                 }
 
-                if (string.IsNullOrEmpty(tempDescription) || string.IsNullOrWhiteSpace(tempDescription)) {
-                    if (expenses.Count.Equals(0)) {
+                if (string.IsNullOrEmpty(tempDescription) || string.IsNullOrWhiteSpace(tempDescription))
+                {
+                    if (expenses.Count.Equals(0))
+                    {
                         Console.WriteLine("Next, we're going to record your expenses.");
                     }
                     Console.WriteLine("Describe your expense:");
                     tempDescription = Console.ReadLine();
 
-                    if (string.IsNullOrEmpty(tempDescription) || string.IsNullOrWhiteSpace(tempDescription)){
+                    if (string.IsNullOrEmpty(tempDescription) || string.IsNullOrWhiteSpace(tempDescription))
+                    {
                         Console.WriteLine("ERROR: You must provide a description! Try again.");
                         continue;
                     }
                 }
 
-                if (tempCost <= 0.0m) {
+                if (tempCost <= 0.0m)
+                {
                     Console.WriteLine("Now, please enter the cost as a positive value:");
-                    try{
+                    try
+                    {
                         tempCost = decimal.Parse(Console.ReadLine());
-                    }catch (Exception) {
+                    }
+                    catch (Exception)
+                    {
                         Console.WriteLine("An error occured while reading the cost of the expense, try again!");
                         continue;
                     }
 
-                    if (tempCost <= 0.0m) {
+                    if (tempCost <= 0.0m)
+                    {
                         Console.WriteLine("The cost of the expense must be a number higher than zero, try again!");
                         continue;
                     }
                 }
 
-                if (!isProcessedExpense){
+                if (!isProcessedExpense)
+                {
                     expenses.Add(new Expense() { description = tempDescription, amount = tempCost });
                     isProcessedExpense = true;
                 }
-                
+
                 Console.WriteLine("Your expense has been added successfully!");
 
                 decimal totalExpense = expenses.Sum(expense => expense.amount);
@@ -72,7 +91,8 @@ namespace BudgetApp {
                 Console.WriteLine($"Your remaining budget is ${remainingBudget}. Would you like to add another one? (Y = YES / N = NO)");
                 string response = Console.ReadLine();
 
-                switch (response.ToUpper()) {
+                switch (response.ToUpper())
+                {
                     case "Y":
                     case "YES":
                         tempDescription = "";
@@ -82,7 +102,7 @@ namespace BudgetApp {
                     case "N":
                     case "NO":
                         return (startingBudget, expenses);
-                    default: 
+                    default:
                         Console.WriteLine("Invalid input! Please reply with either Y or N.");
                         continue;
                 }
@@ -90,7 +110,8 @@ namespace BudgetApp {
 
         }
 
-        static void ShowResults (decimal startingBudget, List<Expense> expenses){
+        static void ShowResults(decimal startingBudget, List<Expense> expenses)
+        {
             decimal totalExpense = expenses.Sum(expense => expense.amount);
             decimal remainingBudget = startingBudget - totalExpense;
             Console.WriteLine("==========================");
@@ -101,11 +122,16 @@ namespace BudgetApp {
             Console.WriteLine("EXPENSES:");
             expenses.ForEach(expense => Console.WriteLine(expense));
             Console.WriteLine("===");
-            if (remainingBudget > 0.0m) {
+            if (remainingBudget > 0.0m)
+            {
                 Console.WriteLine("After taking all expenses into account, you still have money left in your budget.");
-            } else if (remainingBudget < 0.0m) {
+            }
+            else if (remainingBudget < 0.0m)
+            {
                 Console.WriteLine("You've gone over your budget! Perhaps try better money management practices.");
-            } else {
+            }
+            else
+            {
                 Console.WriteLine("You've completely exhausted your budget. There is no money left to spend!");
             }
         }
