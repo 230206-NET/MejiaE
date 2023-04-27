@@ -5,6 +5,7 @@
 
 #Secrets
 **/Secrets.cs
+**/appsettings.Development.json
 
 # Marks files
 MarksLessonsLearned.txt
